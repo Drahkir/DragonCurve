@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
             var numberOfTiles = NumberOfColumns * NumberOfRows;
             float xOffsetInit = 0.0f - (float)NumberOfColumns / 2;
-            float yOffsetInit = 0.0f - (float)NumberOfColumns / 2;
+            float yOffsetInit = 0.0f - (float)NumberOfRows / 2;
             float xOffset = xOffsetInit;
             float yOffset = yOffsetInit;
 
@@ -36,7 +36,9 @@ namespace Assets.Scripts
                     xOffset = xOffsetInit;
                 }
                 xOffset += _tileSizeX;
-                Instantiate(CurvedTile, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
+                int randomTileChoice = Random.Range(0, 2);
+                var randomTile = randomTileChoice == 0 ? CurvedTile : StraightTile;
+                Instantiate(randomTile, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
             }
         }
     }
